@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net7.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="Features\Commands\Product\**" />
+    <EmbeddedResource Remove="Features\Commands\Product\**" />
+    <None Remove="Features\Commands\Product\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="FluentValidation" Version="11.5.2" />
+    <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.5.2" />
+    <PackageReference Include="MediatR" Version="12.0.1" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="7.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\PortfolioApp.Domain\PortfolioApp.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Exceptions\DatabaseExceptions\" />
+    <Folder Include="Features\Commands\Article\DeleteArticle\" />
+    <Folder Include="Features\Commands\Article\UpdateArticle\" />
+    <Folder Include="Features\Commands\Flex\UpdateFlex\" />
+    <Folder Include="Features\Commands\Flex\DeleteFlex\" />
+    <Folder Include="Features\Queries\Flex\GetByIdFlex\" />
+  </ItemGroup>
+
+</Project>
