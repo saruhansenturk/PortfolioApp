@@ -1,31 +1,28 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using PortfolioApp.Application.Features.Commands;
-using PortfolioApp.Application.Features.Queries.Article.GetArticleById;
-using PortfolioApp.Application.Features.Queries.Article.GetArticleNameandId;
-using PortfolioApp.Application.Response;
+using PortfolioApp.Application.Features.Queries.Category.GetAllCategory;
 
 namespace PortfolioApp.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class ArticlesController : ControllerBase
+    public class CategoriesController : ControllerBase
     {
         private readonly IMediator _mediator;
 
-        public ArticlesController(IMediator mediator)
+        public CategoriesController(IMediator mediator)
         {
             _mediator = mediator;
         }
 
-        //[HttpGet]
-        //public async Task<GetAllFlexQueryResponse> Get(
-        //    [FromQuery] GetAllFlexQueryRequest getAllFlexQueryRequest)
-        //{
-        //    GetAllFlexQueryResponse response = await _mediator.Send(getAllFlexQueryRequest);
-        //    return response;
-        //}
+        [HttpPost]
+        [Authorize(AuthenticationSchemes = "Admin")]
+        public async Task<List<GetAllCategoryQueryResponse>> Get([FromQuery] GetAllCategoryQueryRequest getAllFlexQueryRequest)
+        {
+            List<GetAllCategoryQueryResponse> response = await _mediator.Send(getAllFlexQueryRequest);
+            return response;
+        }
 
         //[HttpPost("[action]")]
         //[Authorize(AuthenticationSchemes = "Admin")]
@@ -42,27 +39,13 @@ namespace PortfolioApp.Api.Controllers
         //    return Ok(response);
         //}
 
-        [HttpPost]
-        [Authorize(AuthenticationSchemes = "Admin")]
-        public async Task<IActionResult> Post([FromBody] CreateArticleCommandRequest createArticleCommandRequest)
-        {
-            CommonResponse<bool> response = await _mediator.Send(createArticleCommandRequest);
-            return Ok(response);
-        }
-
-        [HttpPost("[action]")]
-        public async Task<IActionResult> GetArticleNameId([FromBody] GetArticleNameandIdQueryRequest getArticleNameandIdQueryRequest)
-        {
-            List<GetArticleNameandIdQueryResponse> response = await _mediator.Send(getArticleNameandIdQueryRequest);
-            return Ok(response);
-        }
-
-        [HttpGet]
-        public async Task<IActionResult> GetArticleById([FromQuery] GetArticleByIdQueryRequest getArticleByIdQueryRequest)
-        {
-            CommonResponse<GetArticleByIdQueryResponse> response = await _mediator.Send(getArticleByIdQueryRequest);
-            return Ok(response);
-        }
+        //[HttpPost]
+        //[Authorize(AuthenticationSchemes = "Admin")]
+        //public async Task<IActionResult> Post([FromBody] CreateArticleCommandRequest createArticleCommandRequest)
+        //{
+        //    CommonResponse<bool> response = await _mediator.Send(createArticleCommandRequest);
+        //    return Ok(response);
+        //}
 
         //[HttpGet("{FlexEnum}")]
         //public async Task<IActionResult> GetWhere([FromRoute] GetWhereFlexQueryRequest getWhereFlexQueryRequest)

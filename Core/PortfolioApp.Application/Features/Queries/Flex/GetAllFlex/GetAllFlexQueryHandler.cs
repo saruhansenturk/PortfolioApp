@@ -26,10 +26,7 @@ namespace PortfolioApp.Application.Features.Queries.Flex.GetAllFlex
                 };
 
 
-            List<GetAllFlexDto?> mapped = response.Items.Select(t =>
-            {
-                return t.MapTo<GetAllFlexDto>();
-            }).ToList();
+            List<GetAllFlexDto?> mapped = response.Items.Select(t => t.MapTo<GetAllFlexDto>()).ToList();
 
             return new GetAllFlexQueryResponse
             {

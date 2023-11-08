@@ -1,5 +1,5 @@
-﻿using PortfolioApp.Domain.Entities.Common;
-using PortfolioApp.Application.Response;
+﻿using PortfolioApp.Application.Response;
+using PortfolioApp.Domain.Entities.Common;
 
 namespace PortfolioApp.Application.Repositories
 {

@@ -21,6 +21,12 @@ namespace PortfolioApp.Persistance
             services.AddScoped<IArticleReadRepository, ArticleReadRepository>();
             services.AddScoped<IArticleWriteRepository, ArticleWriteRepository>();
 
+            services.AddScoped<ICategoryReadRepository, CategoryReadRepository>();
+            services.AddScoped<ICategoryWriteRepository, CategoryWriteRepository>();
+
+
+            services.AddScoped<IArticleCategoryWriteRepository, ArticleCategoryWriteRepository>();
+
             services.AddScoped(typeof(IUserService<>), typeof(UserService<>));
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IInternalAuthentication, AuthService>();

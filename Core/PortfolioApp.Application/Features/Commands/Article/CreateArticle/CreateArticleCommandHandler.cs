@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Text;
 using MediatR;
-using PortfolioApp.Application.Extensions;
+using PortfolioApp.Application.Repositories;
 using PortfolioApp.Application.Response;
 using PortfolioApp.Domain.Entities;
 
@@ -13,10 +9,11 @@ namespace PortfolioApp.Application.Features.Commands
     public class CreateArticleCommandHandler : IRequestHandler<CreateArticleCommandRequest, CommonResponse<bool>>
     {
         private readonly IArticleWriteRepository _articleWriteRepository;
-
-        public CreateArticleCommandHandler(IArticleWriteRepository articleWriteRepository)
+        private readonly IArticleCategoryWriteRepository _articleCategoryWriteRepository;
+        public CreateArticleCommandHandler(IArticleWriteRepository articleWriteRepository, IArticleCategoryWriteRepository articleCategoryWriteRepository)
         {
             _articleWriteRepository = articleWriteRepository;
+            _articleCategoryWriteRepository = articleCategoryWriteRepository;
         }
 
         public async Task<CommonResponse<bool>> Handle(CreateArticleCommandRequest request, CancellationToken cancellationToken)
@@ -32,12 +29,13 @@ namespace PortfolioApp.Application.Features.Commands
                 Introduction = request.Introduction,
                 LikeCount = 0,
                 Title = request.Title,
-                CategoryId = Guid.Parse("ad74af6e-a56a-4bdb-93b1-34bfbae4d1fa")
+                CategoryId = request.CategoryId
             });
 
             if (addToEntity.Data != null)
             {
                 var saveChanges = await _articleWriteRepository.SaveAsync();
+                
                 if (saveChanges > 0)
                     return new CommonResponse<bool>
                     {
@@ -46,7 +44,6 @@ namespace PortfolioApp.Application.Features.Commands
                         Message = "Article added to successfuly"
                     };
             }
-
 
             return new CommonResponse<bool>
             {
@@ -67,7 +64,7 @@ namespace PortfolioApp.Application.Features.Commands
         public string ArticleName { get; set; }
         public string? Image { get; set; }
         public int LikeCount { get; set; }
-        public string? CategoryId { get; set; }
+        public Guid CategoryId { get; set; }
     }
 
     //public class CreateArticleCommandResponse
