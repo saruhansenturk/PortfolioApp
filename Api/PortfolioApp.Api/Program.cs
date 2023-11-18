@@ -1,7 +1,10 @@
 using System.Text;
+using System.Threading.RateLimiting;
+using AspNetCoreRateLimit;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
+using PortfolioApp.Api.Extensions;
 using PortfolioApp.Application;
 using PortfolioApp.Domain.Entities.Identity;
 using PortfolioApp.Infrastructure;
@@ -23,6 +26,7 @@ builder.Services.AddDbContext<PortfolioAppDbContext>(opt =>
 {
     opt.UseNpgsql(connection);
 });
+
 builder.Services.AddIdentity<AppUser, AppRole>(opt =>
 {
     opt.Password.RequireUppercase = false;
@@ -38,6 +42,7 @@ builder.Services.AddPersistanceServices();
 AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior",
     true); // bunun yerine datetime.now yerine utcnow kullanilabilir.
 
+builder.AddRequestLimit();
 
 builder.Services.AddCors(opt =>
 {
@@ -78,6 +83,7 @@ if (app.Environment.IsDevelopment())
 app.UseCors();
 
 app.UseHttpsRedirection();
+app.UseRateLimiter();
 
 app.UseAuthentication();
 app.UseAuthorization();
