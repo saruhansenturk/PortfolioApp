@@ -1,3 +1,3 @@
 # PortfolioApp
-## Portfolio API \n
+## Portfolio API
 Portfolio API for my Ui and Admin Views
