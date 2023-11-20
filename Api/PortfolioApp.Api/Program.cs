@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.IdentityModel.Tokens;
 using PortfolioApp.Api.Extensions;
 using PortfolioApp.Application;
+using PortfolioApp.Domain.Config;
 using PortfolioApp.Domain.Entities.Identity;
 using PortfolioApp.Infrastructure;
 using PortfolioApp.Persistance;
@@ -52,6 +53,12 @@ builder.Services.AddCors(opt =>
             .AllowAnyHeader()
             .AllowAnyMethod();
     });
+});
+
+builder.Services.AddScoped<ITokenOptions, TokenOptions>(c =>
+{
+    var tokenOptions = builder.Configuration.GetInfoFromAppsettings<TokenOptions>();
+    return tokenOptions;
 });
 
 

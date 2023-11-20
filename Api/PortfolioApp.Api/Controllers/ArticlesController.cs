@@ -5,6 +5,7 @@ using PortfolioApp.Application.Features.Commands;
 using PortfolioApp.Application.Features.Queries.Article.GetArticleById;
 using PortfolioApp.Application.Features.Queries.Article.GetArticleNameandId;
 using PortfolioApp.Application.Response;
+using PortfolioApp.Domain.Config;
 
 namespace PortfolioApp.Api.Controllers
 {
@@ -13,10 +14,11 @@ namespace PortfolioApp.Api.Controllers
     public class ArticlesController : ControllerBase
     {
         private readonly IMediator _mediator;
-
-        public ArticlesController(IMediator mediator)
+        private readonly ITokenOptions _tokenOptions;
+        public ArticlesController(IMediator mediator, ITokenOptions tokenOptions)
         {
             _mediator = mediator;
+            _tokenOptions = tokenOptions;
         }
 
         //[HttpGet]
