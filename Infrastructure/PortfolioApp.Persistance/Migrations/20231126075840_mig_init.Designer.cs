@@ -12,8 +12,8 @@ using PortfolioApp.Persistance.Contexts;
 namespace PortfolioApp.Persistance.Migrations
 {
     [DbContext(typeof(PortfolioAppDbContext))]
-    [Migration("20231027201638_mig_4")]
-    partial class mig_4
+    [Migration("20231126075840_mig_init")]
+    partial class mig_init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -137,14 +137,22 @@ namespace PortfolioApp.Persistance.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<string>("ArticleName")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<string>("Author")
+                        .IsRequired()
+                        .HasColumnType("text");
+
+                    b.Property<string>("Body")
                         .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<Guid>("CategoryId")
                         .HasColumnType("uuid");
 
-                    b.Property<string>("Content")
+                    b.Property<string>("Conclusion")
                         .IsRequired()
                         .HasColumnType("text");
 
@@ -154,15 +162,15 @@ namespace PortfolioApp.Persistance.Migrations
                     b.Property<byte[]>("Image")
                         .HasColumnType("bytea");
 
+                    b.Property<string>("Introduction")
+                        .IsRequired()
+                        .HasColumnType("text");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
                     b.Property<int>("LikeCount")
                         .HasColumnType("integer");
-
-                    b.Property<string>("LinkToUrl")
-                        .IsRequired()
-                        .HasColumnType("text");
 
                     b.Property<string>("Title")
                         .IsRequired()
