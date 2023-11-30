@@ -20,15 +20,16 @@ namespace PortfolioApp.Persistance.Repositories
 
         public Pagination<T> GetAll(int skip, int take, bool tracking = true)
         {
-            var totalCount = Table.AsQueryable().Count(t => !t.IsDeleted);
             var query = Table.AsQueryable()
-                .Where(t => !t.IsDeleted)
-                .Paginate(skip, take);
+                .Where(t => !t.IsDeleted);
+
+            var totalCount = query.Count();
+            var paginatedData = query.Paginate(skip, take);
 
             if (!tracking)
                 query = query.AsNoTracking();
 
-            return new Pagination<T>(totalCount, query.ToList());
+            return new Pagination<T>(totalCount, paginatedData.ToList());
         }
 
         public async Task<T> GetByIdAsync(string id, bool tracking = true)

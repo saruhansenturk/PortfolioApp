@@ -21,11 +21,12 @@ public class CreateProgrammingLangCommandHandler : IRequestHandler<CreateProgram
         {
             Name = request.Name,
             Level = request.Level,
-            LanguageImg = Encoding.UTF8.GetBytes(request.LanguageImage) 
-    });
+            LanguageImg = Encoding.UTF8.GetBytes(request.LanguageImage),
+            Description = request.Description 
+        });
 
 
-        var addedData = await _programmingLanguageWriteRepository.SaveAsync();
+            var addedData = await _programmingLanguageWriteRepository.SaveAsync();
 
 
         return new()
@@ -41,6 +42,7 @@ public class CreateProgrammingLangCommandRequest : IRequest<CommonResponse<bool>
     public string Name { get; set; }
     public int Level { get; set; }
     public string LanguageImage { get; set; }
+    public string Description { get; set; }
 }
 
 //public class CreateProgrammingLangCommandResponse

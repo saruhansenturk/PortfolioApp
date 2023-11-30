@@ -7,7 +7,7 @@ namespace PortfolioApp.Domain.Entities
         public string Name { get; set; }
         public int Level { get; set; }
         public byte[]? LanguageImg { get; set; }
-        public string Description { get; set; }
+        public string? Description { get; set; }
         public ICollection<ProgrammingLanguageTech> ProgrammingLanguageTechs { get; set; }
     }
 }
