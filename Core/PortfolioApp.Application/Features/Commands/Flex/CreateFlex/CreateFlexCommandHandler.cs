@@ -19,13 +19,13 @@ namespace PortfolioApp.Application.Features.Commands.Flex.CreateFlex
             var addToEntity = request.MapTo<Domain.Entities.Flex>();
 
             var fileBytes = File.ReadAllBytes(
-                   "C:\\Users\\srhn7\\OneDrive\\Masaüstü\\Personal\\Saruhan_Furkan_Senturk_Resume_2023.pdf");
+                   "C:\\Users\\srhn7\\OneDrive\\Masaüstü\\Personal\\Saruhan_Furkan_Senturk_Resume_2023_12.pdf");
 
             var base64Format = Convert.ToBase64String(fileBytes);
 
             addToEntity.FlexString5 = base64Format;
 
-        var response = await _flexWriteRepository.AddAsync(addToEntity);
+            var response = await _flexWriteRepository.AddAsync(addToEntity);
 
             var saveChanges = await _flexWriteRepository.SaveAsync();
 
