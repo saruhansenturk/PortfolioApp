@@ -25,6 +25,7 @@ namespace PortfolioApp.Application.Features.Queries.ProgramingLanguage.GetByIdPr
                 CreatedDate = programmingLanguage.CreatedDate,
                 Level = programmingLanguage.Level,
                 UpdatedDate = programmingLanguage.UpdatedDate,
+                Description = programmingLanguage.Description,
                 LanguageImage = Encoding.UTF8.GetString(programmingLanguage.LanguageImg) 
             };
         }

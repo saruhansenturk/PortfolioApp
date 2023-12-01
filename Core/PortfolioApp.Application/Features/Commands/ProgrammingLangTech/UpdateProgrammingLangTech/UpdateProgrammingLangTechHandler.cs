@@ -31,6 +31,7 @@ namespace PortfolioApp.Application.Features.Commands.ProgrammingLangTech.UpdateP
 
             updateToEntityLanguageTech.Level = request.Level;
             updateToEntityLanguageTech.Name = request.Name;
+            updateToEntityLanguageTech.Description = request.Description;
 
             CommonResponse<ProgrammingLanguageTech> updatedEntity = _programmingLanguageTechWriteRepository.Update(updateToEntityLanguageTech);
 
@@ -51,6 +52,7 @@ namespace PortfolioApp.Application.Features.Commands.ProgrammingLangTech.UpdateP
         public string Id { get; set; }
         public int Level { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
     }
 
 }

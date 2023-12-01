@@ -22,7 +22,8 @@ namespace PortfolioApp.Application.Features.Commands.ProgrammingLangTech.CreateP
                 Name = request.Name,
                 ProgrammingLanguageId = Guid.Parse(request.ProgrammingLanguageId),
                 Level = request.Level,
-                LanguageTechImage = request.LanguageTechImage != null ? Encoding.UTF8.GetBytes(request.LanguageTechImage) : null
+                LanguageTechImage = request.LanguageTechImage != null ? Encoding.UTF8.GetBytes(request.LanguageTechImage) : null,
+                Description = request.Description
             });
 
             if (addedEntity.ResponseStatus != ResponseStatus.Success)
@@ -72,5 +73,6 @@ namespace PortfolioApp.Application.Features.Commands.ProgrammingLangTech.CreateP
         public int Level { get; set; }
         public string ProgrammingLanguageId { get; set; }
         public string? LanguageTechImage { get; set; }
+        public string? Description { get; set; }
     }
 }

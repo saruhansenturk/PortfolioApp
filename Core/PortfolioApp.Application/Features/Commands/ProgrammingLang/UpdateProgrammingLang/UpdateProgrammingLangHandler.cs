@@ -21,6 +21,7 @@ namespace PortfolioApp.Application.Features.Commands.ProgrammingLang.UpdateProgr
             {
                 updateToEntity.Name = request.Name;
                 updateToEntity.Level = request.Level;
+                updateToEntity.Description = request.Description;
             }
 
             _programmingLanguageWriteRepository.Update(updateToEntity);
@@ -39,5 +40,6 @@ namespace PortfolioApp.Application.Features.Commands.ProgrammingLang.UpdateProgr
         public string Id { get; set; }
         public string Name { get; set; }
         public int Level { get; set; }
+        public string Description { get; set; }
     }
 }

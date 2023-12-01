@@ -22,7 +22,8 @@ namespace PortfolioApp.Application.Features.Queries.ProgramingLanguage.GetAllPro
                 CreatedDate = t.CreatedDate,
                 Level = t.Level,
                 Name = t.Name,
-                UpdatedDate = t.UpdatedDate
+                UpdatedDate = t.UpdatedDate,
+                Description = t.Description
             }).ToList();
 
             return new()
