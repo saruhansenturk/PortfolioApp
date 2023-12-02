@@ -45,6 +45,11 @@ AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior",
 
 builder.AddRequestLimit();
 
+builder.Services.AddStackExchangeRedisCache(option =>
+{
+    option.Configuration = "localhost:1453";
+});
+
 builder.Services.AddCors(opt =>
 {
     opt.AddDefaultPolicy(policy =>

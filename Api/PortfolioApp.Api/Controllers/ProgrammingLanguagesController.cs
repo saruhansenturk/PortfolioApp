@@ -9,6 +9,7 @@ using PortfolioApp.Application.Features.Queries.ProgramingLanguage.GetAllProgram
 using PortfolioApp.Application.Features.Queries.ProgramingLanguage.GetAllProgrammingLanguageUi;
 using PortfolioApp.Application.Features.Queries.ProgramingLanguage.GetByIdProgrammingLanguage;
 using PortfolioApp.Application.Response;
+using PortfolioApp.Persistance.Attributes;
 
 namespace PortfolioApp.Api.Controllers
 {
@@ -24,14 +25,15 @@ namespace PortfolioApp.Api.Controllers
         }
 
         [HttpGet]
-        public async Task<GetAllProgrammingLangQueryResponse> Get(
-            [FromQuery] GetAllProgrammingLangQueryRequest getAllProgrammingLangQueryRequest)
+        [Cache<GetAllProgrammingLangQueryResponse>(100)]
+        public async Task<GetAllProgrammingLangQueryResponse> Get([FromQuery] GetAllProgrammingLangQueryRequest getAllProgrammingLangQueryRequest)
         {
             GetAllProgrammingLangQueryResponse response = await _mediator.Send(getAllProgrammingLangQueryRequest);
             return response;
         }
 
         [HttpGet("[action]")]
+        [Cache<GetAllProgrammingLangUiQueryResponse>(100)]
         public async Task<GetAllProgrammingLangUiQueryResponse> GetProgrammingUi(
             [FromQuery] GetAllProgrammingLangUiQueryRequest getAllProgrammingLangQueryRequest)
         {

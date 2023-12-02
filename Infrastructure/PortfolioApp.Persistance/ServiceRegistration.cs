@@ -29,6 +29,7 @@ namespace PortfolioApp.Persistance
 
             services.AddScoped(typeof(IUserService<>), typeof(UserService<>));
             services.AddScoped<IAuthService, AuthService>();
+            services.AddScoped<IResponseCacheService, ResponseCacheService>();
             services.AddScoped<IInternalAuthentication, AuthService>();
         }
     }
