@@ -33,7 +33,7 @@ namespace PortfolioApp.Api.Controllers
         }
 
         [HttpGet("[action]")]
-        [Cache<GetAllProgrammingLangUiQueryResponse>(100)]
+        [Cache<GetAllProgrammingLangUiQueryResponse>(300)]
         public async Task<GetAllProgrammingLangUiQueryResponse> GetProgrammingUi(
             [FromQuery] GetAllProgrammingLangUiQueryRequest getAllProgrammingLangQueryRequest)
         {
