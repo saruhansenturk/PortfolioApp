@@ -14,7 +14,7 @@ namespace PortfolioApp.Application.Features.Queries.Article.GetArticleNameandId
 
         public async Task<List<GetArticleNameandIdQueryResponse>> Handle(GetArticleNameandIdQueryRequest request, CancellationToken cancellationToken)
         {
-            var getArticleNameandId = _articleReadRepository.Table.Select(t => new GetArticleNameandIdQueryResponse
+            var getArticleNameandId = _articleReadRepository.Table.Where(t => !t.IsDeleted).Select(t => new GetArticleNameandIdQueryResponse
             {
                 Id = t.Id,
                 ArticleName = t.ArticleName

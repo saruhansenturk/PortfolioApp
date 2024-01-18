@@ -17,9 +17,18 @@ namespace PortfolioApp.Application.Features.Queries.Article.GetArticleById
         {
             var article = await _articleReadRepository.GetByIdAsync(request.Id, false);
 
+            if (article == null)
+                return new CommonResponse<GetArticleByIdQueryResponse>
+                {
+                    Data = null,
+                    ResponseStatus = ResponseStatus.NoData,
+                    Message = "There is no record for your search criteria!"
+                };
+
             var mapped = article.MapTo<GetArticleByIdQueryResponse>();
 
             if (mapped != null) return new CommonResponse<GetArticleByIdQueryResponse> { Data = mapped, ResponseStatus = ResponseStatus.Success };
+
 
             return new CommonResponse<GetArticleByIdQueryResponse>
             {
